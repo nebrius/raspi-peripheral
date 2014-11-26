@@ -24,14 +24,15 @@ THE SOFTWARE.
 
 /*global describe, it, expect */
 
+global._raspiTest = true;
 var Peripheral = require('./lib/index.js').Peripheral;
 
 describe('Peripheral Tests', function() {
   it('can create a peripheral', function() {
-    var myPeripheral = new Peripheral(1);
-    expect(myPeripheral.pin).toBe(1);
+    var myPeripheral = new Peripheral('GPIO2');
+    expect(myPeripheral.pin).toBe(3);
     expect(myPeripheral.alive).toBe(true);
-    expect(global.raspiPinUsage[1]).toBe(myPeripheral);
+    expect(global.raspiPinUsage[3]).toBe(myPeripheral);
   });
 
   it ('can create a new peripheral over the old one', function() {

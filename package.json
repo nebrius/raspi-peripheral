@@ -1,6 +1,6 @@
 {
   "name": "raspi-peripheral",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides a base class and pin management functions for the raspi suite",
   "main": "lib/index.js",
   "devDependencies": {
@@ -9,7 +9,9 @@
     "gulp-sourcemaps": "^1.2.4",
     "gulp-traceur": "^0.13.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "raspi-board": "^1.0.1"
+  },
   "scripts": {
     "test": "jasmine-node tests.spec.js"
   },
