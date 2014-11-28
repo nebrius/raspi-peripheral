@@ -26,20 +26,27 @@ import events from 'events';
 import board from 'raspi-board';
 require('../lib/traceur-runtime');
 
-var pins = global.raspiPinUsage = global.raspiPinUsage || {};
+var registeredPins = global.raspiPinUsage = global.raspiPinUsage || {};
 
 export class Peripheral extends events.EventEmitter {
-  constructor(pin) {
-    this.pin = board.getPinNumber(pin);
+  constructor(pins) {
     this.alive = true;
-    if (pins[this.pin]) {
-      pins[this.pin].destroy();
+    if (!Array.isArray(pins)) {
+      pins = [ pins ];
     }
-    pins[this.pin] = this;
+    this.pins = [];
+    pins.map((pin) => {
+      var pin = board.getPinNumber(pin);
+      this.pins.push(pin);
+      if (registeredPins[pin]) {
+        registeredPins[pin].destroy();
+      }
+      registeredPins[pin] = this;
+    });
   }
   destroy() {
     this.alive = false;
-    delete pins[this.pin];
+    delete registeredPins[this.pin];
     this.emit('destroyed');
   }
 }

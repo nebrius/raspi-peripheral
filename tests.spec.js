@@ -30,22 +30,35 @@ var Peripheral = require('./lib/index.js').Peripheral;
 describe('Peripheral Tests', function() {
   it('can create a peripheral', function() {
     var myPeripheral = new Peripheral('GPIO2');
-    expect(myPeripheral.pin).toBe(3);
+    expect(myPeripheral.pins.length).toBe(1);
+    expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(true);
-    expect(global.raspiPinUsage[3]).toBe(myPeripheral);
+    expect(global.raspiPinUsage[8]).toBe(myPeripheral);
   });
 
   it ('can create a new peripheral over the old one', function() {
-    var myPeripheral = new Peripheral(1);
-    expect(myPeripheral.pin).toBe(1);
+    var myPeripheral = new Peripheral(13);
+    expect(myPeripheral.pins.length).toBe(1);
+    expect(myPeripheral.pins.indexOf(2)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(true);
-    expect(global.raspiPinUsage[1]).toBe(myPeripheral);
+    expect(global.raspiPinUsage[2]).toBe(myPeripheral);
 
-    var myOtherPeripheral = new Peripheral(1);
-    expect(myPeripheral.pin).toBe(1);
+    var myOtherPeripheral = new Peripheral(13);
+    expect(myOtherPeripheral.pins.length).toBe(1);
+    expect(myPeripheral.pins.indexOf(2)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(false);
-    expect(myOtherPeripheral.pin).toBe(1);
+    expect(myOtherPeripheral.pins.indexOf(2)).not.toBe(-1);
     expect(myOtherPeripheral.alive).toBe(true);
-    expect(global.raspiPinUsage[1]).toBe(myOtherPeripheral);
+    expect(global.raspiPinUsage[2]).toBe(myOtherPeripheral);
+  });
+
+  it ('can create a multi-pin peripheral', function() {
+    var myPeripheral = new Peripheral([ 'SDA', 'SCL' ]);
+    expect(myPeripheral.pins.length).toBe(2);
+    expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
+    expect(myPeripheral.pins.indexOf(9)).not.toBe(-1);
+    expect(myPeripheral.alive).toBe(true);
+    expect(global.raspiPinUsage[8]).toBe(myPeripheral);
+    expect(global.raspiPinUsage[9]).toBe(myPeripheral);
   });
 });
