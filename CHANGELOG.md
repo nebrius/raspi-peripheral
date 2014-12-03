@@ -1,4 +1,4 @@
-## 1.0.3 (2014-12-2)
+## 1.0.3-1.04 (2014-12-2)
 
 - Refactor to match changes in raspi-board
 
