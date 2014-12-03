@@ -1,3 +1,7 @@
+## 1.0.3 (2014-12-2)
+
+- Refactor to match changes in raspi-board
+
 ## 1.0.2 (2014-11-28)
 
 - Added the ability for a peripheral to use multiple pins

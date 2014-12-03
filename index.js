@@ -23,7 +23,7 @@ THE SOFTWARE.
 */
 
 import events from 'events';
-import board from 'raspi-board';
+import { getPinNumber } from 'raspi-board';
 require('../lib/traceur-runtime');
 
 var registeredPins = global.raspiPinUsage = global.raspiPinUsage || {};
@@ -36,7 +36,7 @@ export class Peripheral extends events.EventEmitter {
     }
     this.pins = [];
     pins.map((pin) => {
-      var pin = board.getPinNumber(pin);
+      var pin = getPinNumber(pin);
       this.pins.push(pin);
       if (registeredPins[pin]) {
         registeredPins[pin].destroy();
