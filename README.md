@@ -17,7 +17,7 @@ class MyPeripheral extends Peripheral {
 }
 ```
 
-Raspi Peripheral is written in ECMAScript 6, so creating your peripheral in ECMAScript 6 is easiest, but you can also do it in ECMAScript 5:
+Raspi Peripheral is written in ECMAScript 6, so writing your peripheral in ECMAScript 6 is easiest, but you can also do it in ECMAScript 5:
 
 ```JavaScript
 var Peripheral = require('raspi-peripheral').Peripheral;
@@ -36,21 +36,41 @@ MyPeripheral.prototype.write = function(value) {
 
 ## API
 
-### _constructor_(pin)
+### new Peripheral(pin)
 
 The base constructor must be called with a single argument, the pin to use.
 
-### _instance_.pin
+### Instance Properties
 
-The pin that the peripheral was initialized with
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>pin</td>
+    <td>Number</td>
+    <td>The pin associated with this peripheral. This value is the normalized Wiring Pi pin number and may not be the same value that was passed to the constructor.</td>
+  </tr>
+  <tr>
+    <td>alive</td>
+    <td>Boolean</td>
+    <td>Whether or not the pin is "alive". A pin is considered dead when the application initialized a new peripheral on the same pin as this peripheral. You should always make sure to query "alive" before performing any operation.</td>
+  </tr>
+</table>
 
-### _instance_.alive
+### Instance Methods
 
-Whether or not the pin is "alive". A dead pin means that the user initialized a new peripheral on the same pin as this peripheral. You should always make sure to query "alive" before performing any work.
+#### destroy()
 
-### _instance_.destroy()
+This method "destroys" the pin. It takes no arguments and does not return a value. Destroying a pin sets the alive flag to false and emits a "destroy" event. The ```destroy``` method is automatically called whenever a new peripheral is initialized over another peripheral.
 
-This method "destroys" the pin. Destroying a pin sets the alive flag to false and emits a "destroy" event. The ```destroy``` method is automatically called whenever a new peripheral is initialized over another peripheral.
+This method _does not_ perform any Wiring Pi cleanup. If you need to perform any cleanup in your peripheral code, you should listen for the "destroy" event in your peripheral's constructor.
+
+This method _should not_ be called directly. The Peripheral base class will call this method automatically when a new peripheral is initialized over the old one.
 
 ## Example gulpfile for compiling to ECMAScript 6
 
@@ -77,7 +97,7 @@ gulp.task('clean', function(cb) {
 });
 ```
 
-This gulpfile assumes you have a single source file called ```index.js```. Note that the traceur runtime is loaded automatically by the Raspi Peripheral module, so there is no need to do it in your module.
+This gulpfile assumes you have a single source file called ```index.js```. Note that the traceur runtime is loaded automatically by the Raspi Peripheral module, so there is no need to do it in your module. Make sure to include the four modules required in this file in your package.json's ```dev-dependencies``` section. See the package.json and gulpfile.js file for this module.
 
 License
 =======
