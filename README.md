@@ -1,7 +1,7 @@
 Raspi Peripheral
 ================
 
-This module provides the base class for other raspi peripherals. Peripherals for use within the raspi ecosystem should extend this base class. This class provides management of pins and ensures that only one peripheral can be active on any given pin at one time.
+Raspi Peripheral is part of the [Raspi.js suite of libraries](https://github.com/bryan-m-hughes/raspi-core) and provides the base class for other Raspi peripherals. Peripherals for use within the Raspi ecosystem should extend this base class. This class provides management of pins and ensures that only one peripheral can be active on any given pin at one time.
 
 ## Example
 
