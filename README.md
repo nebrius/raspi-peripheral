@@ -1,7 +1,7 @@
 Raspi Peripheral
 ================
 
-Raspi Peripheral is part of the [Raspi.js suite of libraries](https://github.com/bryan-m-hughes/raspi-core) and provides the base class for other Raspi peripherals. Peripherals for use within the Raspi ecosystem should extend this base class. This class provides management of pins and ensures that only one peripheral can be active on any given pin at one time.
+Raspi Peripheral is part of the [Raspi.js suite](https://github.com/bryan-m-hughes/raspi) and provides the base class for other Raspi peripherals. Peripherals for use within the Raspi ecosystem should extend this base class. This class provides management of pins and ensures that only one peripheral can be active on any given pin at one time.
 
 ## Example
 
@@ -66,11 +66,15 @@ The base constructor must be called with a single argument, the pin to use.
 
 #### destroy()
 
-This method "destroys" the pin. It takes no arguments and does not return a value. Destroying a pin sets the alive flag to false and emits a "destroy" event. The ```destroy``` method is automatically called whenever a new peripheral is initialized over another peripheral.
+This method "destroys" the pin. Destroying a pin sets the alive flag to false and emits a "destroy" event. The ```destroy``` method is automatically called whenever a new peripheral is initialized over another peripheral.
 
 This method _does not_ perform any Wiring Pi cleanup. If you need to perform any cleanup in your peripheral code, you should listen for the "destroy" event in your peripheral's constructor.
 
 This method _should not_ be called directly. The Peripheral base class will call this method automatically when a new peripheral is initialized over the old one.
+
+_Arguments_: None
+
+_Returns_: None
 
 ## Example gulpfile for compiling to ECMAScript 6
 
