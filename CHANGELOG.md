@@ -1,3 +1,7 @@
+## 1.0.7 (2015-2-17)
+
+- Updated dependencies to support the Raspberry Pi 2
+
 ## 1.0.6 (2015-2-12)
 
 - Doc updates
