@@ -24,7 +24,6 @@ THE SOFTWARE.
 
 import events from 'events';
 import { getPinNumber } from 'raspi-board';
-require('../lib/traceur-runtime');
 
 var registeredPins = global.raspiPinUsage = global.raspiPinUsage || {};
 

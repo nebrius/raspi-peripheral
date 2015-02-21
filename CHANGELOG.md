@@ -1,3 +1,7 @@
+## 1.1.0 (2015-2-21)
+
+- Switched from traceur to babel for ES6->ES5 compilation
+
 ## 1.0.7 (2015-2-17)
 
 - Updated dependencies to support the Raspberry Pi 2
