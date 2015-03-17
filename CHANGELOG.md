@@ -1,3 +1,8 @@
+## 1.1.1 (2015-3-17)
+
+- Fixed a bug with global pin state when destroying multi-pin peripherals
+- Fixed broken unit tests
+
 ## 1.1.0 (2015-2-21)
 
 - Switched from traceur to babel for ES6->ES5 compilation

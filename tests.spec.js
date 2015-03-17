@@ -36,29 +36,50 @@ describe('Peripheral Tests', function() {
     expect(global.raspiPinUsage[8]).toBe(myPeripheral);
   });
 
-  it ('can create a new peripheral over the old one', function() {
+  it('can create a new peripheral over the old one', function() {
     var myPeripheral = new Peripheral(13);
     expect(myPeripheral.pins.length).toBe(1);
-    expect(myPeripheral.pins.indexOf(2)).not.toBe(-1);
+    expect(myPeripheral.pins.indexOf(13)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(true);
-    expect(global.raspiPinUsage[2]).toBe(myPeripheral);
+    expect(global.raspiPinUsage[13]).toBe(myPeripheral);
 
     var myOtherPeripheral = new Peripheral(13);
     expect(myOtherPeripheral.pins.length).toBe(1);
-    expect(myPeripheral.pins.indexOf(2)).not.toBe(-1);
+    expect(myPeripheral.pins.indexOf(13)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(false);
-    expect(myOtherPeripheral.pins.indexOf(2)).not.toBe(-1);
+    expect(myOtherPeripheral.pins.indexOf(13)).not.toBe(-1);
     expect(myOtherPeripheral.alive).toBe(true);
-    expect(global.raspiPinUsage[2]).toBe(myOtherPeripheral);
+    expect(global.raspiPinUsage[13]).toBe(myOtherPeripheral);
   });
 
-  it ('can create a multi-pin peripheral', function() {
-    var myPeripheral = new Peripheral([ 'SDA', 'SCL' ]);
+  it('can create a multi-pin peripheral', function() {
+    var myPeripheral = new Peripheral([ 'SDA0', 'SCL0' ]);
     expect(myPeripheral.pins.length).toBe(2);
     expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
     expect(myPeripheral.pins.indexOf(9)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(true);
     expect(global.raspiPinUsage[8]).toBe(myPeripheral);
     expect(global.raspiPinUsage[9]).toBe(myPeripheral);
+  });
+
+  it ('can create a multi-pin peripheral over an old one', function() {
+    var myPeripheral = new Peripheral([ 'SDA0', 'SCL0' ]);
+    expect(myPeripheral.pins.length).toBe(2);
+    expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
+    expect(myPeripheral.pins.indexOf(9)).not.toBe(-1);
+    expect(myPeripheral.alive).toBe(true);
+    expect(global.raspiPinUsage[8]).toBe(myPeripheral);
+    expect(global.raspiPinUsage[9]).toBe(myPeripheral);
+
+    var myOtherPeripheral = new Peripheral([ 'SDA0', 'PWM0' ]);
+    expect(myOtherPeripheral.pins.length).toBe(2);
+    expect(myOtherPeripheral.pins.indexOf(8)).not.toBe(-1);
+    expect(myOtherPeripheral.pins.indexOf(1)).not.toBe(-1);
+    expect(myOtherPeripheral.alive).toBe(true);
+    expect(global.raspiPinUsage[8]).toBe(myOtherPeripheral);
+    expect(global.raspiPinUsage[1]).toBe(myOtherPeripheral);
+    expect(global.raspiPinUsage[9]).toBeUndefined();
+    expect(myPeripheral.alive).toBe(false);
+
   });
 });

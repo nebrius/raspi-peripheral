@@ -45,7 +45,9 @@ export class Peripheral extends events.EventEmitter {
   }
   destroy() {
     this.alive = false;
-    delete registeredPins[this.pin];
+    for (var i = 0; i < this.pins.length; i++) {
+      delete registeredPins[this.pins[i]];
+    }
     this.emit('destroyed');
   }
 }
