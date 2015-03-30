@@ -1,3 +1,8 @@
+## 1.2.0 (2015-3-30)
+
+- Added ```validateAlive``` method
+- Fixed a potential bug with destroying a peripheral twice
+
 ## 1.1.1 (2015-3-17)
 
 - Fixed a bug with global pin state when destroying multi-pin peripherals

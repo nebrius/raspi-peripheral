@@ -44,10 +44,17 @@ export class Peripheral extends events.EventEmitter {
     });
   }
   destroy() {
-    this.alive = false;
-    for (var i = 0; i < this.pins.length; i++) {
-      delete registeredPins[this.pins[i]];
+    if (this.alive) {
+      this.alive = false;
+      for (var i = 0; i < this.pins.length; i++) {
+        delete registeredPins[this.pins[i]];
+      }
+      this.emit('destroyed');
     }
-    this.emit('destroyed');
+  }
+  validateAlive() {
+     if (!this.alive) {
+      throw new Error('Attempted to access a destroyed peripheral');
+    }
   }
 }

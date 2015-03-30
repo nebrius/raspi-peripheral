@@ -76,6 +76,14 @@ _Arguments_: None
 
 _Returns_: None
 
+#### validateAlive()
+
+This method checks if the peripheral is alive or not. If the peripheral is not alive, it throws a handy exception.
+
+_Arguments_: None
+
+_Returns_: None
+
 ## Example gulpfile for compiling to ECMAScript 6
 
 If you want to use ECMAScript 6 for your peripheral, here is an example gulpfile:

@@ -80,6 +80,14 @@ describe('Peripheral Tests', function() {
     expect(global.raspiPinUsage[1]).toBe(myOtherPeripheral);
     expect(global.raspiPinUsage[9]).toBeUndefined();
     expect(myPeripheral.alive).toBe(false);
+  });
 
+  it ('can query validateAlive', function() {
+    var myPeripheral = new Peripheral(13);
+    expect(myPeripheral.validateAlive.bind(myPeripheral)).not.toThrow();
+
+    var myOtherPeripheral = new Peripheral(13);
+    expect(myOtherPeripheral.validateAlive.bind(myOtherPeripheral)).not.toThrow();
+    expect(myPeripheral.validateAlive.bind(myPeripheral)).toThrow();
   });
 });
