@@ -36,9 +36,9 @@ MyPeripheral.prototype.write = function(value) {
 
 ## API
 
-### new Peripheral(pin)
+### new Peripheral(pins)
 
-The base constructor must be called with a single argument, the pin to use.
+The base constructor must be called with a single argument, the pin or pins to use. If a number or string is passed in, it is assumed to be a single pin. If an array is passed in, each entry in the array is assumed to be a single pin.
 
 ### Instance Properties
 
@@ -51,9 +51,9 @@ The base constructor must be called with a single argument, the pin to use.
     </tr>
   </thead>
   <tr>
-    <td>pin</td>
-    <td>Number</td>
-    <td>The pin associated with this peripheral. This value is the normalized Wiring Pi pin number and may not be the same value that was passed to the constructor.</td>
+    <td>pins</td>
+    <td>Array</td>
+    <td>The pins associated with this peripheral. This value is the normalized Wiring Pi pin number and may not be the same value that was passed to the constructor.</td>
   </tr>
   <tr>
     <td>alive</td>
