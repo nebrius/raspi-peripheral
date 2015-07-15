@@ -25,17 +25,18 @@ THE SOFTWARE.
 import events from 'events';
 import { getPinNumber } from 'raspi-board';
 
-var registeredPins = global.raspiPinUsage = global.raspiPinUsage || {};
+const registeredPins = global.raspiPinUsage = global.raspiPinUsage || {};
 
 export class Peripheral extends events.EventEmitter {
   constructor(pins) {
+    super();
     this.alive = true;
     if (!Array.isArray(pins)) {
       pins = [ pins ];
     }
     this.pins = [];
     pins.map((pin) => {
-      var pin = getPinNumber(pin);
+      pin = getPinNumber(pin);
       this.pins.push(pin);
       if (registeredPins[pin]) {
         registeredPins[pin].destroy();
@@ -46,14 +47,14 @@ export class Peripheral extends events.EventEmitter {
   destroy() {
     if (this.alive) {
       this.alive = false;
-      for (var i = 0; i < this.pins.length; i++) {
+      for (let i = 0; i < this.pins.length; i++) {
         delete registeredPins[this.pins[i]];
       }
       this.emit('destroyed');
     }
   }
   validateAlive() {
-     if (!this.alive) {
+    if (!this.alive) {
       throw new Error('Attempted to access a destroyed peripheral');
     }
   }

@@ -1,3 +1,9 @@
+## 1.2.1 (2015-7-14)
+
+- Updated dependencies to match changes in raspi-board
+- Added .eslintrc file
+- Updated code to pass linting
+
 ## 1.2.0 (2015-3-30)
 
 - Added ```validateAlive``` method
