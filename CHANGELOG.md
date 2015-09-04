@@ -1,3 +1,7 @@
+## 1.2.2 (2015-9-3)
+
+- Fixed tests and updated dependencies
+
 ## 1.2.1 (2015-7-14)
 
 - Updated dependencies to match changes in raspi-board

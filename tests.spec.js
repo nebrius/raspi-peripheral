@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 /*global describe, it, expect */
 
-global._raspiTest = true;
+global.raspiTest = true;
 var Peripheral = require('./lib/index.js').Peripheral;
 
 describe('Peripheral Tests', function() {
@@ -71,13 +71,13 @@ describe('Peripheral Tests', function() {
     expect(global.raspiPinUsage[8]).toBe(myPeripheral);
     expect(global.raspiPinUsage[9]).toBe(myPeripheral);
 
-    var myOtherPeripheral = new Peripheral([ 'SDA0', 'PWM0' ]);
+    var myOtherPeripheral = new Peripheral([ 'SDA0', 'GPIO9' ]);
     expect(myOtherPeripheral.pins.length).toBe(2);
     expect(myOtherPeripheral.pins.indexOf(8)).not.toBe(-1);
-    expect(myOtherPeripheral.pins.indexOf(1)).not.toBe(-1);
+    expect(myOtherPeripheral.pins.indexOf(13)).not.toBe(-1);
     expect(myOtherPeripheral.alive).toBe(true);
     expect(global.raspiPinUsage[8]).toBe(myOtherPeripheral);
-    expect(global.raspiPinUsage[1]).toBe(myOtherPeripheral);
+    expect(global.raspiPinUsage[13]).toBe(myOtherPeripheral);
     expect(global.raspiPinUsage[9]).toBeUndefined();
     expect(myPeripheral.alive).toBe(false);
   });
