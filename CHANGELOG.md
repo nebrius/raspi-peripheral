@@ -1,3 +1,10 @@
+## 1.3.0 (2015-10-12)
+
+- Added a check for invalid pins being passed in
+  - Invalid pins now cause an exception to be thrown instead of failing silently
+- Updated linting infrastructure.
+  - An external eslint install is no longer necessary
+
 ## 1.2.2 (2015-9-3)
 
 - Fixed tests and updated dependencies

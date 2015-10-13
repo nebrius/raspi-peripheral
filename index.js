@@ -35,8 +35,11 @@ export class Peripheral extends events.EventEmitter {
       pins = [ pins ];
     }
     this.pins = [];
-    pins.map((pin) => {
-      pin = getPinNumber(pin);
+    pins.map((alias) => {
+      const pin = getPinNumber(alias);
+      if (pin === null) {
+        throw new Error('Invalid pin: ' + alias);
+      }
       this.pins.push(pin);
       if (registeredPins[pin]) {
         registeredPins[pin].destroy();

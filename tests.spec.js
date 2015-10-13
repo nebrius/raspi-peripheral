@@ -90,4 +90,15 @@ describe('Peripheral Tests', function() {
     expect(myOtherPeripheral.validateAlive.bind(myOtherPeripheral)).not.toThrow();
     expect(myPeripheral.validateAlive.bind(myPeripheral)).toThrow();
   });
+
+  it ('can\'t create peripherals with invalid pins', function() {
+    var exception = false;
+    try {
+      new Peripheral(['fake']);
+    } catch(e) {
+      expect(e.message).toBe('Invalid pin: fake');
+      exception = true;
+    }
+    expect(exception).toBe(true);
+  });
 });
