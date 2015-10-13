@@ -39,7 +39,7 @@ gulp.task('default', ['clean', 'lint'], function() {
 });
 
 gulp.task('clean', function(cb) {
-  del(['lib']).then(cb);
+  del(['lib']).then(function() { cb(); });
 });
 
 gulp.task('lint', function() {
