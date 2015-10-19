@@ -44,7 +44,7 @@ The pins on the Raspberry Pi are a little complicated. There are multiple header
 
 To help make it easier, you can specify pins in three ways. The first is to specify the pin by function, e.g. ```'GPIO18'```. The second way is to specify by pin number, which is specified in the form "P[header]-[pin]", e.g. ```'P1-7'```. The final way is specify the [Wiring Pi virtual pin number](http://wiringpi.com/pins/), e.g. ```7```. If you specify a number instead of a string, it is assumed to be a Wiring Pi number.
 
-Be sure to read the [full list of pins](https://github.com/nebrius/raspi-io/wiki) on the supported models of the Raspberry Pi.
+Be sure to read the [full list of pins](https://github.com/nebrius/raspi-io/wiki/Pin-Information) on the supported models of the Raspberry Pi.
 
 ## API
 
@@ -99,7 +99,7 @@ _Returns_: None
 ## Example gulpfile for compiling to ECMAScript 6
 
 If you want to use ECMAScript 6 for your peripheral, here is an example gulpfile:
- 
+
 ```JavaScript
 var gulp = require('gulp');
 var traceur = require('gulp-traceur');
