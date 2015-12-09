@@ -1,3 +1,7 @@
+## 1.4.0 (2015-12-8)
+
+- Bumped dependencies to bring in support for the Raspberry Pi Zero
+
 ## 1.3.0 (2015-10-12)
 
 - Added a check for invalid pins being passed in
