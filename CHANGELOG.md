@@ -1,3 +1,7 @@
+## 1.5.0 (2016-4-4)
+
+- Bumped dependencies to bring in support for the Raspberry Pi 3 Model B
+
 ## 1.4.0 (2015-12-8)
 
 - Bumped dependencies to bring in support for the Raspberry Pi Zero
