@@ -1,4 +1,8 @@
-## 1.5.0 (2016-4-4)
+## 1.5.1 (2016-3-7)
+
+- Dependency update to add missing Raspberry Pi 3 Model B revision
+
+## 1.5.0 (2016-3-4)
 
 - Bumped dependencies to bring in support for the Raspberry Pi 3 Model B
 
