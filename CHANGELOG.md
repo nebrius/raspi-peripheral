@@ -1,3 +1,7 @@
+## 1.6.3 (2016-12-3)
+
+- Added types declaration to package.json
+
 ## 1.6.2 (2016-12-3)
 
 - Converted the project to TypeScript and cleaned up a bunch of odds and ends
