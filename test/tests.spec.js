@@ -25,7 +25,7 @@ THE SOFTWARE.
 /*global describe, it, expect */
 
 global.raspiTest = true;
-var Peripheral = require('./lib/index.js').Peripheral;
+var Peripheral = require('../dist/index.js').Peripheral;
 
 describe('Peripheral Tests', function() {
   it('can create a peripheral', function() {

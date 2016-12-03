@@ -1,3 +1,8 @@
+## 1.6.2 (2016-12-3)
+
+- Converted the project to TypeScript and cleaned up a bunch of odds and ends
+  - Note: there is no functionality change or bug fixes with this release
+
 ## 1.6.1 (2016-10-13)
 
 - Bumped dependencies to bring in support for a new Raspberry Pi Zero revisions

@@ -7,10 +7,14 @@ Raspi Peripheral is part of the [Raspi.js suite](https://github.com/nebrius/rasp
 
 If you have a bug report, feature request, or wish to contribute code, please be sure to check out the Raspi-IO [Contributing Guide](https://github.com/nebrius/raspi-io/blob/master/CONTRIBUTING.md), which also applies to this project.
 
+_Warning_: This package is not intended to be used directly!
+
+Note: this project is written in [TypeScript](http://www.typescriptlang.org/) and includes type definitions in the package.json file. This means that if you want to use it from TypeScript, you don't need to install a separate @types module.
+
 ## Example
 
 ```JavaScript
-import { Peripheral } = from 'raspi-peripheral';
+import { Peripheral } from 'raspi-peripheral';
 
 class MyPeripheral extends Peripheral {
   write(value) {
@@ -21,7 +25,7 @@ class MyPeripheral extends Peripheral {
 }
 ```
 
-Raspi Peripheral is written in ECMAScript 6, so writing your peripheral in ECMAScript 6 is easiest, but you can also do it in ECMAScript 5:
+Raspi Peripheral is written in TypeScript, so writing your peripheral in TypeScript or ECMAScript 2015 is easiest, but you can also do it in ECMAScript 5:
 
 ```JavaScript
 var Peripheral = require('raspi-peripheral').Peripheral;
@@ -128,7 +132,7 @@ License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Bryan Hughes bryan@theoreticalideations.com
+Copyright (c) 2014 Bryan Hughes bryan@nebri.us
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

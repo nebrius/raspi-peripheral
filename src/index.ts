@@ -22,41 +22,48 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import events from 'events';
+import { EventEmitter } from 'events';
 import { getPinNumber } from 'raspi-board';
 
-const registeredPins = global.raspiPinUsage = global.raspiPinUsage || {};
+if (!(<any>global).raspiPinUsage) {
+  (<any>global).raspiPinUsage = {};
+}
+const registeredPins: { [ pinNumber: string ]: Peripheral } = (<any>global).raspiPinUsage;
 
-export class Peripheral extends events.EventEmitter {
-  constructor(pins) {
+export class Peripheral extends EventEmitter {
+
+  public alive = true;
+  public pins: Array<number> = [];
+
+  constructor(pins: string | number | Array<string | number>) {
     super();
-    this.alive = true;
     if (!Array.isArray(pins)) {
       pins = [ pins ];
     }
-    this.pins = [];
-    pins.map((alias) => {
+    for (const alias of pins) {
       const pin = getPinNumber(alias);
       if (pin === null) {
-        throw new Error('Invalid pin: ' + alias);
+        throw new Error(`Invalid pin: ${alias}`);
       }
       this.pins.push(pin);
       if (registeredPins[pin]) {
         registeredPins[pin].destroy();
       }
       registeredPins[pin] = this;
-    });
+    }
   }
-  destroy() {
+
+  public destroy() {
     if (this.alive) {
       this.alive = false;
-      for (let i = 0; i < this.pins.length; i++) {
-        delete registeredPins[this.pins[i]];
+      for (const pin of this.pins) {
+        delete registeredPins[pin];
       }
       this.emit('destroyed');
     }
   }
-  validateAlive() {
+
+  public validateAlive() {
     if (!this.alive) {
       throw new Error('Attempted to access a destroyed peripheral');
     }
