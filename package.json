@@ -1,6 +1,6 @@
 {
   "name": "raspi-peripheral",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Provides a base class and pin management functions for the Raspi.js library suite",
   "main": "dist/index.js",
   "types": "./declarations/index.d.ts",

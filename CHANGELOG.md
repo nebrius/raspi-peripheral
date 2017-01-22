@@ -1,3 +1,7 @@
+## 1.6.4 (2017-22-1)
+
+- Publishing a new version to update the README on npmjs.com. No other changes.
+
 ## 1.6.3 (2016-12-3)
 
 - Added types declaration to package.json
