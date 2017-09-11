@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2014 Bryan Hughes <bryan@nebri.us>
+Copyright (c) 2014-2017 Bryan Hughes <bryan@nebri.us>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,11 @@ const registeredPins: { [ pinNumber: string ]: Peripheral } = (<any>global).rasp
 
 export class Peripheral extends EventEmitter {
 
-  public alive = true;
-  public pins: Array<number> = [];
+  private _alive = true;
+  public get alive() { return this._alive; }
+
+  private _pins: Array<number> = [];
+  public get pins() { return this._pins; }
 
   constructor(pins: string | number | Array<string | number>) {
     super();
@@ -45,7 +48,7 @@ export class Peripheral extends EventEmitter {
       if (pin === null) {
         throw new Error(`Invalid pin: ${alias}`);
       }
-      this.pins.push(pin);
+      this._pins.push(pin);
       if (registeredPins[pin]) {
         registeredPins[pin].destroy();
       }
@@ -54,8 +57,8 @@ export class Peripheral extends EventEmitter {
   }
 
   public destroy() {
-    if (this.alive) {
-      this.alive = false;
+    if (this._alive) {
+      this._alive = false;
       for (const pin of this.pins) {
         delete registeredPins[pin];
       }
@@ -64,7 +67,7 @@ export class Peripheral extends EventEmitter {
   }
 
   public validateAlive() {
-    if (!this.alive) {
+    if (!this._alive) {
       throw new Error('Attempted to access a destroyed peripheral');
     }
   }

@@ -1,8 +1,10 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
 export declare class Peripheral extends EventEmitter {
-    alive: boolean;
-    pins: Array<number>;
+    private _alive;
+    readonly alive: boolean;
+    private _pins;
+    readonly pins: number[];
     constructor(pins: string | number | Array<string | number>);
     destroy(): void;
     validateAlive(): void;

@@ -1,3 +1,10 @@
+## 2.0.0 (2017-9-11)
+
+- BREAKING CHANGE: Changed `Peripheral.alive` and `Peripheral.pins` read-only properties.
+- BREAKING CHANGE: dropped support for Node.js < 4.0.0, and now enforce it via package.json "engines" field.
+- SORT OF BREAKING-ISH CHANGE: dropped support for attempting to install on non-arm platforms via package.json's "cpu" field.
+    - Attempting to install this on a non-Raspberry Pi platform before didn't do much, since most of the Raspi.js suite wouldn't install on non-Raspberry Pi platforms. This module would install, even though you couldn't do anything with it.
+
 ## 1.6.4 (2017-22-1)
 
 - Publishing a new version to update the README on npmjs.com. No other changes.

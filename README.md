@@ -9,7 +9,25 @@ If you have a bug report, feature request, or wish to contribute code, please be
 
 **Warning:** This package is not intended to be used directly!
 
-**Note:** this project is written in [TypeScript](http://www.typescriptlang.org/) and includes type definitions in the package.json file. This means that if you want to use it from TypeScript, you don't need to install a separate @types module.
+## System Requirements
+
+- Raspberry Pi Model B Rev 1 or newer (sorry Model A users)
+- Raspbian Jessie or newer
+  - [Node-RED](http://nodered.org/) works, but can be finicky and difficult to debug.
+  - See https://github.com/nebrius/raspi-io/issues/24 for more info about support for other OSes
+- Node 4.0.0 or newer
+
+Detailed instructions for getting a Raspberry Pi ready for NodeBots, including how to install Node.js, can be found in the [wiki](https://github.com/nebrius/raspi-io/wiki/Getting-a-Raspberry-Pi-ready-for-NodeBots)
+
+**Warning:** when using this module, it MUST be installed with user-level permissions, but run with root permissions (e.g. `sudo node index.js`).
+
+## Installation
+
+Install with npm:
+
+```Shell
+npm install raspi-peripheral
+```
 
 ## Example
 
@@ -67,14 +85,14 @@ The base constructor must be called with a single argument, the pin or pins to u
     </tr>
   </thead>
   <tr>
-    <td>pins</td>
+    <td>pins (readonly)</td>
     <td>Array</td>
     <td>The pins associated with this peripheral. This value is the normalized Wiring Pi pin number and may not be the same value that was passed to the constructor.</td>
   </tr>
   <tr>
-    <td>alive</td>
+    <td>alive (readonly)</td>
     <td>Boolean</td>
-    <td>Whether or not the pin is "alive". A pin is considered dead when the application initialized a new peripheral on the same pin as this peripheral. You should always make sure to query "alive" before performing any operation.</td>
+    <td>Whether or not the pin is "alive". A pin is considered not alive when the application initialized a new peripheral on the same pin as this peripheral. You should always make sure to query "alive" before performing any operation inside your peripheral instance code.</td>
   </tr>
 </table>
 
@@ -84,7 +102,7 @@ The base constructor must be called with a single argument, the pin or pins to u
 
 This method "destroys" the pin. Destroying a pin sets the alive flag to false and emits a "destroy" event. The ```destroy``` method is automatically called whenever a new peripheral is initialized over another peripheral.
 
-This method _does not_ perform any Wiring Pi cleanup. If you need to perform any cleanup in your peripheral code, you should listen for the "destroy" event in your peripheral's constructor.
+If you need to perform any cleanup in your peripheral code, you should listen for the "destroy" event in your peripheral's constructor.
 
 This method _should not_ be called directly. The Peripheral base class will call this method automatically when a new peripheral is initialized over the old one.
 
@@ -125,14 +143,14 @@ gulp.task('clean', function(cb) {
 });
 ```
 
-This gulpfile assumes you have a single source file called ```index.js```. Note that the traceur runtime is loaded automatically by the Raspi Peripheral module, so there is no need to do it in your module. Make sure to include the four modules required in this file in your package.json's ```dev-dependencies``` section. See the package.json and gulpfile.js file for this module.
+This gulpfile assumes you have a single source file called ```index.js```. Note that the traceur runtime is loaded automatically by the Raspi Peripheral module, so there is no need to do it in your module. Make sure to include the four modules required in this file in your package.json's ```dev-dependencies``` section.
 
 License
 =======
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Bryan Hughes bryan@nebri.us
+Copyright (c) 2014-2017 Bryan Hughes <bryan@nebri.us>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,18 +1,24 @@
 {
   "name": "raspi-peripheral",
-  "version": "1.6.4",
+  "version": "2.0.0",
   "description": "Provides a base class and pin management functions for the Raspi.js library suite",
   "main": "dist/index.js",
   "types": "./declarations/index.d.ts",
   "devDependencies": {
-    "@types/node": "0.0.2",
+    "@types/node": "^8.0.28",
     "jasmine-node": "^1.14.5",
-    "tslint": "^4.0.2",
-    "typescript": "^2.0.10"
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
   },
   "dependencies": {
     "raspi-board": "^4.0.1"
   },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "cpu": [
+    "arm"
+  ],
   "scripts": {
     "prebuild": "tslint src/**/*.ts",
     "build": "tsc",
