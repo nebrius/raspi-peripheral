@@ -1,3 +1,7 @@
+## 2.0.1 (2017-9-11)
+
+- Updated dependency with a breaking change. It mirrors the breaking change this module did in 2.0.0, so there is nothing breaking between 2.0.0 and 2.0.1 for this module
+
 ## 2.0.0 (2017-9-11)
 
 - BREAKING CHANGE: Changed `Peripheral.alive` and `Peripheral.pins` read-only properties.
