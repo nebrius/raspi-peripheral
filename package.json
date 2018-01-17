@@ -5,13 +5,14 @@
   "main": "dist/index.js",
   "types": "./declarations/index.d.ts",
   "devDependencies": {
-    "@types/node": "^8.0.28",
+    "@types/node": "^9.3.0",
+    "@types/raspi-board": "^5.0.0",
     "jasmine-node": "^1.14.5",
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.2"
+    "tslint": "^5.9.1",
+    "typescript": "^2.6.2"
   },
   "dependencies": {
-    "raspi-board": "^5.0.0"
+    "raspi-board": "^5.0.2"
   },
   "engines": {
     "node": ">= 4.0.0"
@@ -20,7 +21,7 @@
     "arm"
   ],
   "scripts": {
-    "prebuild": "tslint src/**/*.ts",
+    "prebuild": "tslint 'src/**/*.ts'",
     "build": "tsc",
     "test": "jasmine-node test/tests.spec.js"
   },

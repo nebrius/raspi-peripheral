@@ -25,17 +25,17 @@ THE SOFTWARE.
 import { EventEmitter } from 'events';
 import { getPinNumber } from 'raspi-board';
 
-if (!(<any>global).raspiPinUsage) {
-  (<any>global).raspiPinUsage = {};
+if (!(global as any).raspiPinUsage) {
+  (global as any).raspiPinUsage = {};
 }
-const registeredPins: { [ pinNumber: string ]: Peripheral } = (<any>global).raspiPinUsage;
+const registeredPins: { [ pinNumber: string ]: Peripheral } = (global as any).raspiPinUsage;
 
 export class Peripheral extends EventEmitter {
 
   private _alive = true;
   public get alive() { return this._alive; }
 
-  private _pins: Array<number> = [];
+  private _pins: number[] = [];
   public get pins() { return this._pins; }
 
   constructor(pins: string | number | Array<string | number>) {
