@@ -1,3 +1,10 @@
+## 3.0.0 (2018-12-4)
+
+- BREAKING CHANGE: dropped support for Node.js < 6.0.0
+- Updated TypeScript to v3 and changed compiled output to be ES2015 compliant instead of ES5 compliant (see above breaking change)
+- Update to use core-io-types
+- Updated unit tests to use new Jasmine, Istanbul, and Coveralls, and integrated into Travis and Coveralls
+
 ## 2.0.1 (2017-9-11)
 
 - Updated dependency with a breaking change. It mirrors the breaking change this module did in 2.0.0, so there is nothing breaking between 2.0.0 and 2.0.1 for this module

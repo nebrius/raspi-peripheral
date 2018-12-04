@@ -22,72 +22,49 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var events_1 = require("events");
-var raspi_board_1 = require("raspi-board");
+const events_1 = require("events");
+const raspi_board_1 = require("raspi-board");
 if (!global.raspiPinUsage) {
     global.raspiPinUsage = {};
 }
-var registeredPins = global.raspiPinUsage;
-var Peripheral = /** @class */ (function (_super) {
-    __extends(Peripheral, _super);
-    function Peripheral(pins) {
-        var _this = _super.call(this) || this;
-        _this._alive = true;
-        _this._pins = [];
+const registeredPins = global.raspiPinUsage;
+class Peripheral extends events_1.EventEmitter {
+    constructor(pins) {
+        super();
+        this._alive = true;
+        this._pins = [];
         if (!Array.isArray(pins)) {
             pins = [pins];
         }
-        for (var _i = 0, pins_1 = pins; _i < pins_1.length; _i++) {
-            var alias = pins_1[_i];
-            var pin = raspi_board_1.getPinNumber(alias);
+        for (const alias of pins) {
+            const pin = raspi_board_1.getPinNumber(alias);
             if (pin === null) {
-                throw new Error("Invalid pin: " + alias);
+                throw new Error(`Invalid pin: ${alias}`);
             }
-            _this._pins.push(pin);
+            this._pins.push(pin);
             if (registeredPins[pin]) {
                 registeredPins[pin].destroy();
             }
-            registeredPins[pin] = _this;
+            registeredPins[pin] = this;
         }
-        return _this;
     }
-    Object.defineProperty(Peripheral.prototype, "alive", {
-        get: function () { return this._alive; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Peripheral.prototype, "pins", {
-        get: function () { return this._pins; },
-        enumerable: true,
-        configurable: true
-    });
-    Peripheral.prototype.destroy = function () {
+    get alive() { return this._alive; }
+    get pins() { return this._pins; }
+    destroy() {
         if (this._alive) {
             this._alive = false;
-            for (var _i = 0, _a = this.pins; _i < _a.length; _i++) {
-                var pin = _a[_i];
+            for (const pin of this.pins) {
                 delete registeredPins[pin];
             }
             this.emit('destroyed');
         }
-    };
-    Peripheral.prototype.validateAlive = function () {
+    }
+    validateAlive() {
         if (!this._alive) {
             throw new Error('Attempted to access a destroyed peripheral');
         }
-    };
-    return Peripheral;
-}(events_1.EventEmitter));
+    }
+}
 exports.Peripheral = Peripheral;
 //# sourceMappingURL=index.js.map

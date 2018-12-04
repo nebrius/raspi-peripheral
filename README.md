@@ -2,6 +2,8 @@ Raspi Peripheral
 ================
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nebrius/raspi-io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/nebrius/raspi-peripheral.svg?branch=master)](https://travis-ci.org/nebrius/raspi-peripheral)
+[![Coverage Status](https://coveralls.io/repos/github/nebrius/raspi-peripheral/badge.svg?branch=master)](https://coveralls.io/github/nebrius/raspi-peripheral?branch=master)
 
 Raspi Peripheral is part of the [Raspi.js suite](https://github.com/nebrius/raspi) and provides the base class for other Raspi peripherals. Peripherals for use within the Raspi ecosystem should extend this base class. This class provides management of pins and ensures that only one peripheral can be active on any given pin at one time.
 
