@@ -24,26 +24,25 @@ THE SOFTWARE.
 
 /*global describe, it, expect */
 
-global.raspiTest = true;
-var Peripheral = require('../dist/index.js').Peripheral;
+const Peripheral = require('../dist/index.js').Peripheral;
 
-describe('Peripheral Tests', function() {
-  it('can create a peripheral', function() {
-    var myPeripheral = new Peripheral('GPIO2');
+describe('Peripheral Tests', () => {
+  it('can create a peripheral', () => {
+    const myPeripheral = new Peripheral('GPIO2');
     expect(myPeripheral.pins.length).toBe(1);
     expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(true);
     expect(global.raspiPinUsage[8]).toBe(myPeripheral);
   });
 
-  it('can create a new peripheral over the old one', function() {
-    var myPeripheral = new Peripheral(13);
+  it('can create a new peripheral over the old one', () => {
+    const myPeripheral = new Peripheral(13);
     expect(myPeripheral.pins.length).toBe(1);
     expect(myPeripheral.pins.indexOf(13)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(true);
     expect(global.raspiPinUsage[13]).toBe(myPeripheral);
 
-    var myOtherPeripheral = new Peripheral(13);
+    const myOtherPeripheral = new Peripheral(13);
     expect(myOtherPeripheral.pins.length).toBe(1);
     expect(myPeripheral.pins.indexOf(13)).not.toBe(-1);
     expect(myPeripheral.alive).toBe(false);
@@ -52,8 +51,8 @@ describe('Peripheral Tests', function() {
     expect(global.raspiPinUsage[13]).toBe(myOtherPeripheral);
   });
 
-  it('can create a multi-pin peripheral', function() {
-    var myPeripheral = new Peripheral([ 'SDA0', 'SCL0' ]);
+  it('can create a multi-pin peripheral', () => {
+    const myPeripheral = new Peripheral([ 'SDA0', 'SCL0' ]);
     expect(myPeripheral.pins.length).toBe(2);
     expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
     expect(myPeripheral.pins.indexOf(9)).not.toBe(-1);
@@ -62,8 +61,8 @@ describe('Peripheral Tests', function() {
     expect(global.raspiPinUsage[9]).toBe(myPeripheral);
   });
 
-  it ('can create a multi-pin peripheral over an old one', function() {
-    var myPeripheral = new Peripheral([ 'SDA0', 'SCL0' ]);
+  it ('can create a multi-pin peripheral over an old one', () => {
+    const myPeripheral = new Peripheral([ 'SDA0', 'SCL0' ]);
     expect(myPeripheral.pins.length).toBe(2);
     expect(myPeripheral.pins.indexOf(8)).not.toBe(-1);
     expect(myPeripheral.pins.indexOf(9)).not.toBe(-1);
@@ -71,7 +70,7 @@ describe('Peripheral Tests', function() {
     expect(global.raspiPinUsage[8]).toBe(myPeripheral);
     expect(global.raspiPinUsage[9]).toBe(myPeripheral);
 
-    var myOtherPeripheral = new Peripheral([ 'SDA0', 'GPIO9' ]);
+    const myOtherPeripheral = new Peripheral([ 'SDA0', 'GPIO9' ]);
     expect(myOtherPeripheral.pins.length).toBe(2);
     expect(myOtherPeripheral.pins.indexOf(8)).not.toBe(-1);
     expect(myOtherPeripheral.pins.indexOf(13)).not.toBe(-1);
@@ -82,17 +81,17 @@ describe('Peripheral Tests', function() {
     expect(myPeripheral.alive).toBe(false);
   });
 
-  it ('can query validateAlive', function() {
-    var myPeripheral = new Peripheral(13);
+  it ('can query validateAlive', () => {
+    const myPeripheral = new Peripheral(13);
     expect(myPeripheral.validateAlive.bind(myPeripheral)).not.toThrow();
 
-    var myOtherPeripheral = new Peripheral(13);
+    const myOtherPeripheral = new Peripheral(13);
     expect(myOtherPeripheral.validateAlive.bind(myOtherPeripheral)).not.toThrow();
     expect(myPeripheral.validateAlive.bind(myPeripheral)).toThrow();
   });
 
-  it ('can\'t create peripherals with invalid pins', function() {
-    var exception = false;
+  it ('can\'t create peripherals with invalid pins', () => {
+    let exception = false;
     try {
       new Peripheral(['fake']);
     } catch(e) {
