@@ -24,13 +24,14 @@ THE SOFTWARE.
 
 import { EventEmitter } from 'events';
 import { getPinNumber } from 'raspi-board';
+import { IPeripheral } from 'core-io-types';
 
 if (!(global as any).raspiPinUsage) {
   (global as any).raspiPinUsage = {};
 }
 const registeredPins: { [ pinNumber: string ]: Peripheral } = (global as any).raspiPinUsage;
 
-export class Peripheral extends EventEmitter {
+export class Peripheral extends EventEmitter implements IPeripheral {
 
   private _alive = true;
   public get alive() { return this._alive; }

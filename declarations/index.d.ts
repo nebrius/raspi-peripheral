@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
-export declare class Peripheral extends EventEmitter {
+import { IPeripheral } from 'core-io-types';
+export declare class Peripheral extends EventEmitter implements IPeripheral {
     private _alive;
     readonly alive: boolean;
     private _pins;

@@ -1,3 +1,7 @@
+## 3.0.1 (2018-12-4)
+
+- Encorporated core-io-types (under the hood preparatory work for some other refactoring)
+
 ## 3.0.0 (2018-12-4)
 
 - BREAKING CHANGE: dropped support for Node.js < 6.0.0
