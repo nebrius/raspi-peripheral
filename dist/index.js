@@ -25,10 +25,7 @@ THE SOFTWARE.
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = require("events");
 const raspi_board_1 = require("raspi-board");
-if (!global.raspiPinUsage) {
-    global.raspiPinUsage = {};
-}
-const registeredPins = global.raspiPinUsage;
+const raspi_1 = require("raspi");
 class Peripheral extends events_1.EventEmitter {
     constructor(pins) {
         super();
@@ -43,10 +40,7 @@ class Peripheral extends events_1.EventEmitter {
                 throw new Error(`Invalid pin: ${alias}`);
             }
             this._pins.push(pin);
-            if (registeredPins[pin]) {
-                registeredPins[pin].destroy();
-            }
-            registeredPins[pin] = this;
+            raspi_1.setActivePeripheral(pin, this);
         }
     }
     get alive() { return this._alive; }
@@ -54,9 +48,6 @@ class Peripheral extends events_1.EventEmitter {
     destroy() {
         if (this._alive) {
             this._alive = false;
-            for (const pin of this.pins) {
-                delete registeredPins[pin];
-            }
             this.emit('destroyed');
         }
     }

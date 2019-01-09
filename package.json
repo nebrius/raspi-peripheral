@@ -1,13 +1,13 @@
 {
   "name": "raspi-peripheral",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Provides a base class and pin management functions for the Raspi.js library suite",
   "main": "dist/index.js",
   "types": "./declarations/index.d.ts",
   "devDependencies": {
     "@types/node": "^10.12.12",
     "@types/raspi-board": "^5.2.0",
-    "core-io-types": "^1.0.0",
+    "core-io-types": "^1.4.0",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "istanbul": "^0.4.5",
@@ -16,6 +16,7 @@
     "typescript": "^3.2.1"
   },
   "dependencies": {
+    "raspi": "^5.2.2",
     "raspi-board": "^6.1.0"
   },
   "engines": {
@@ -27,7 +28,8 @@
   "scripts": {
     "prebuild": "tslint 'src/**/*.ts'",
     "build": "tsc",
-    "test": "cross-env RASPI_IO_TEST_MODE=true istanbul cover ./node_modules/jasmine/bin/jasmine.js --captureExceptions spec/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "cross-env RASPI_IO_TEST_MODE=true istanbul cover ./node_modules/jasmine/bin/jasmine.js --captureExceptions spec/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test-local": "cross-env RASPI_IO_TEST_MODE=true jasmine spec/*.spec.js"
   },
   "repository": {
     "type": "git",

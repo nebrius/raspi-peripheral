@@ -25,11 +25,7 @@ THE SOFTWARE.
 import { EventEmitter } from 'events';
 import { getPinNumber } from 'raspi-board';
 import { IPeripheral } from 'core-io-types';
-
-if (!(global as any).raspiPinUsage) {
-  (global as any).raspiPinUsage = {};
-}
-const registeredPins: { [ pinNumber: string ]: Peripheral } = (global as any).raspiPinUsage;
+import { setActivePeripheral } from 'raspi';
 
 export class Peripheral extends EventEmitter implements IPeripheral {
 
@@ -50,19 +46,13 @@ export class Peripheral extends EventEmitter implements IPeripheral {
         throw new Error(`Invalid pin: ${alias}`);
       }
       this._pins.push(pin);
-      if (registeredPins[pin]) {
-        registeredPins[pin].destroy();
-      }
-      registeredPins[pin] = this;
+      setActivePeripheral(pin, this);
     }
   }
 
   public destroy() {
     if (this._alive) {
       this._alive = false;
-      for (const pin of this.pins) {
-        delete registeredPins[pin];
-      }
       this.emit('destroyed');
     }
   }

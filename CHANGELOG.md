@@ -1,3 +1,7 @@
+## 3.0.2 (2019-1-08)
+
+- Reworked the internals to use newly exposed functionality in the base raspi module. No functionality change
+
 ## 3.0.1 (2018-12-4)
 
 - Encorporated core-io-types (under the hood preparatory work for some other refactoring)
