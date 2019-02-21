@@ -1,3 +1,7 @@
+## 3.0.3 (2019-2-20)
+
+- Updated dependencies
+
 ## 3.0.2 (2019-1-08)
 
 - Reworked the internals to use newly exposed functionality in the base raspi module. No functionality change

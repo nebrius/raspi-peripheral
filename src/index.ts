@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 import { EventEmitter } from 'events';
 import { getPinNumber } from 'raspi-board';
-import { IPeripheral } from 'core-io-types';
+import { IPeripheral } from 'j5-io-types';
 import { setActivePeripheral } from 'raspi';
 
 export class Peripheral extends EventEmitter implements IPeripheral {
