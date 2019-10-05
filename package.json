@@ -1,6 +1,6 @@
 {
   "name": "raspi-peripheral",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Provides a base class and pin management functions for the Raspi.js library suite",
   "main": "dist/index.js",
   "types": "./declarations/index.d.ts",
@@ -23,7 +23,8 @@
     "node": ">= 6.0.0"
   },
   "cpu": [
-    "arm"
+    "arm",
+    "arm64"
   ],
   "scripts": {
     "prebuild": "tslint 'src/**/*.ts'",
